@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Comics.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;OOPAssignmentTwo&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">oopassignmenttwo</a> &gt; <span class="el_source">Comics.java</span></div><h1>Comics.java</h1><pre class="source lang-java linenums">package oopassignmenttwo;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author schev
+ */
+public class Comics {
+    private String title, publisher, writer, artist; //BOOM!, Marvel, DC, IDW, Image, Dark Horse
+    private int collection, volume;
+    private double releaseDate;
+<span class="fc" id="L15">    private static final String[] majorPublishers = {&quot;Marvel&quot;,&quot;DC Entertainment&quot;,</span>
+        &quot;Image Comics&quot;, &quot;Dark Horse Comics&quot;, &quot;IDW Publishing&quot;, &quot;BOOM! Studios&quot;, 
+        &quot;Archie Comics&quot;, &quot;Top Cow&quot;};
+    
+    /**
+     * Constructor for the Comics class instantiating the variables
+    * @param title
+    * @param publisher
+    * @param writer
+    * @param artist
+    * @param collection
+    * @param volume
+    * @param releaseDate 
+    */
+<span class="fc" id="L29">    public Comics(String title, String publisher, String writer, String artist, int collection, int volume, double releaseDate) {</span>
+<span class="fc" id="L30">        setTitle(title);</span>
+<span class="fc" id="L31">        setPublisher(publisher);</span>
+<span class="fc" id="L32">        setWriter(writer);</span>
+<span class="fc" id="L33">        setArtist(artist);</span>
+<span class="fc" id="L34">        setCollection(collection);</span>
+<span class="fc" id="L35">        setVolume(volume);</span>
+<span class="fc" id="L36">        setReleaseDate(releaseDate);</span>
+<span class="fc" id="L37">    }</span>
+
+    /**
+     * get method for title
+     * @return 0
+     */
+    public String getTitle() {
+<span class="fc" id="L44">        return title;</span>
+    }
+
+    /**
+     * set method that will ensure the field is not empty
+     * @param title 
+     */
+    public void setTitle(String title) {
+<span class="fc bfc" id="L52" title="All 2 branches covered.">        if (title.isEmpty())</span>
+        {
+<span class="fc" id="L54">            throw new IllegalArgumentException(&quot;Please enter a title.&quot;);</span>
+        }
+<span class="fc" id="L56">        else this.title = title;</span>
+<span class="fc" id="L57">    }</span>
+
+    /**
+     * get method for publisher
+     * @return 
+     */
+    public String getPublisher() {
+<span class="fc" id="L64">        return publisher;</span>
+    }
+    
+    /**
+     * set method for the publisher that will verify that the publisher is not
+     * empty and one of the valid selections
+     * @param publisher 
+     */
+    public void setPublisher(String publisher) {
+<span class="fc bfc" id="L73" title="All 2 branches covered.">        if(publisher == null)</span>
+            {
+<span class="fc" id="L75">                throw new IllegalArgumentException(&quot;Please enter &quot;</span>
+                            + &quot;a major publisher option.&quot;);
+            }
+<span class="fc bfc" id="L78" title="All 2 branches covered.">        else if (publisher.isEmpty())</span>
+            {
+<span class="fc" id="L80">                throw new IllegalArgumentException(&quot;Please enter a &quot;</span>
+                            + &quot;a publisher's name.&quot;);
+            }
+        else
+<span class="fc bfc" id="L84" title="All 2 branches covered.">            for (String validPublisher: majorPublishers)</span>
+            {
+<span class="fc bfc" id="L86" title="All 2 branches covered.">                if (validPublisher.equals(publisher))</span>
+                    {
+<span class="fc" id="L88">                       this.publisher = publisher;</span>
+<span class="fc" id="L89">                        return;</span>
+                    }
+            }
+<span class="fc" id="L92">             throw new IllegalArgumentException(&quot;Please enter a major publisher.&quot;);</span>
+    }
+    
+    /**
+     * get method for writer
+     * @return 
+     */
+    public String getWriter() {
+<span class="fc" id="L100">        return writer;</span>
+    }
+
+    /**
+     * set method that will ensure the field is not empty
+     * @param writer
+     */
+    public void setWriter(String writer) {
+<span class="fc bfc" id="L108" title="All 2 branches covered.">           if (writer.isEmpty())</span>
+        {
+<span class="fc" id="L110">            throw new IllegalArgumentException(&quot;Please enter an writer.&quot;);</span>
+        }
+<span class="fc" id="L112">           else this.writer = writer;</span>
+<span class="fc" id="L113">    }</span>
+
+    /**
+     * get method for artist
+     * @return 
+     */
+    public String getArtist() {
+<span class="fc" id="L120">        return artist;</span>
+    }
+
+    /**
+     * set method that will ensure the field is not empty
+     * @param artist 
+     */
+    public void setArtist(String artist) {
+<span class="fc bfc" id="L128" title="All 2 branches covered.">           if (artist.isEmpty())</span>
+        {
+<span class="fc" id="L130">            throw new IllegalArgumentException(&quot;Please enter an artist.&quot;);</span>
+        }
+<span class="fc" id="L132">           else this.artist = artist;</span>
+<span class="fc" id="L133">    }</span>
+
+    /**
+     * get method for collection
+     * @return 
+     */
+    public int getCollection() {
+<span class="fc" id="L140">        return collection;</span>
+    }
+
+    /**
+     * set method that will ensure there is a number greater than zero and 
+     * below 15
+     * @param collection 
+     */
+    public void setCollection(int collection) {
+<span class="pc bpc" id="L149" title="1 of 4 branches missed.">        if (collection &lt; 0 &amp;&amp; collection &gt; 15)</span>
+        {
+<span class="nc" id="L151">            throw new IllegalArgumentException(&quot;Please enter a number between&quot;</span>
+                    + &quot;1 and 15.&quot;);
+        }
+<span class="fc" id="L154">        else this.collection = collection;</span>
+<span class="fc" id="L155">    }</span>
+    
+    /**
+     *get method for volume 
+     * @return 
+     */
+    public int getVolume() {
+<span class="fc" id="L162">        return volume;</span>
+    }
+    
+    /**
+     * set method that will ensure there is a non-negative number that is below 
+     * 15
+     * @param volume 
+     */
+    public void setVolume(int volume) {
+<span class="pc bpc" id="L171" title="1 of 4 branches missed.">        if (volume &lt;= 0 &amp;&amp; volume &lt; 15)</span>
+        {
+<span class="fc" id="L173">            throw new IllegalArgumentException(&quot;Please enter a number between&quot;</span>
+                    + &quot;0 and 15.&quot;);
+        }
+<span class="fc" id="L176">        else this.volume = volume;</span>
+<span class="fc" id="L177">    }</span>
+    
+    /**
+     * get method for releaseDate
+     * @return 
+     */
+    public double getReleaseDate() {
+<span class="fc" id="L184">        return releaseDate;</span>
+    }
+
+    /**
+     * Set method for the release date that verifies that it ranges from
+     * the year of the first comic book to the present date
+     * @param releaseDate 
+     */
+    public void setReleaseDate(double releaseDate) {
+<span class="pc bpc" id="L193" title="1 of 4 branches missed.">        if (releaseDate &lt;= LocalDate.now().getYear() &amp;&amp; releaseDate &gt; 1937)</span>
+<span class="fc" id="L194">            this.releaseDate = releaseDate;</span>
+<span class="fc" id="L195">        else throw new IllegalArgumentException(&quot;Please enter a year between&quot;</span>
+                + &quot;1937 and the current year.&quot;);
+<span class="fc" id="L197">    }</span>
+    
+    /**
+     * This method will run through and return the validPublishers so that
+     * the ComicsViewController may retrieve them
+     */
+    public static String[] getPublishers(){
+<span class="fc" id="L204">        return majorPublishers;</span>
+    }
+    
+    /**
+      * ToString method to save the information as a string
+      */
+    public String toString()
+    {
+<span class="fc" id="L212">        return String.format(&quot;Title: %s Publisher: %s Writer: %s Artist: %s &quot;</span>
+                             + &quot;Collection: %s Volume: %s Release Date: %.4s&quot;, 
+                            this.title, this.publisher, this.writer, 
+<span class="fc" id="L215">                            this.artist, this.collection, this.volume,</span>
+<span class="fc" id="L216">                            this.releaseDate);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

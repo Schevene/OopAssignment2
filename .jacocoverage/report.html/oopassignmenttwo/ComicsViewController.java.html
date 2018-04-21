@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ComicsViewController.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;OOPAssignmentTwo&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">oopassignmenttwo</a> &gt; <span class="el_source">ComicsViewController.java</span></div><h1>ComicsViewController.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package oopassignmenttwo;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.Formatter;
+import java.util.List;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+
+/**
+ * FXML Controller class
+ *
+ * @author schev
+ */
+<span class="nc" id="L35">public class ComicsViewController implements Initializable {</span>
+
+    
+    @FXML
+    private Label windowHeaderLabel;
+
+    @FXML
+    private Label titleLabel;
+
+    @FXML
+    private Label writerLabel;
+
+    @FXML
+    private Label artistLabel;
+
+    @FXML
+    private Label publisherLabel;
+
+    @FXML
+    private Label releaseYearLabel;
+
+    @FXML
+    private TextField titleText;
+
+    @FXML
+    private TextField writerText;
+
+    @FXML
+    private TextField artistText;
+
+    @FXML
+    private ComboBox&lt;String&gt; publisherComboBox;
+
+    @FXML
+    private Slider releaseYearSlider;
+
+    @FXML
+    private TextField releaseYearSliderText;
+
+    @FXML
+    private Label collectionLabel;
+
+    @FXML
+    private Label volumeLabel;
+
+    @FXML
+    private Spinner&lt;Integer&gt; collectionSpinner;
+
+    @FXML
+    private Spinner&lt;Integer&gt; volumeSpinner;
+    
+    @FXML
+    private Button saveButton;
+
+    @FXML
+    private Label systemMsgText;
+
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        
+        //Set up the comboxBox to take values from the Comics class
+<span class="nc" id="L99">        publisherComboBox.getItems().addAll(Comics.getPublishers());</span>
+        
+        //Set up release year text field as non-editable       
+<span class="nc" id="L102">        this.releaseYearSliderText.setEditable(false);</span>
+        
+        //Set up the max and min for the release year slider
+<span class="nc" id="L105">        releaseYearSlider.setMin(1937);</span>
+<span class="nc" id="L106">        releaseYearSlider.setMax(LocalDate.now().getYear());</span>
+        
+        //Call a method to update the year text field to the selected
+        //year on the slider
+<span class="nc" id="L110">        updateReleaseYearText();</span>
+        
+        //Value factory to set up the collection spinner and its max and min
+        //values
+<span class="nc" id="L114">        SpinnerValueFactory&lt;Integer&gt; valueFactory = </span>
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 15);
+ 
+<span class="nc" id="L117">        collectionSpinner.setValueFactory(valueFactory);</span>
+        
+        //Value factory to set up the volume spinner and its max and min
+        //values
+<span class="nc" id="L121">           SpinnerValueFactory&lt;Integer&gt; valueFactory2 = </span>
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 15);
+ 
+<span class="nc" id="L124">        volumeSpinner.setValueFactory(valueFactory2);</span>
+        
+        //set the system message to blank until there is success or failure
+<span class="nc" id="L127">        systemMsgText.setText(&quot; &quot;);</span>
+<span class="nc" id="L128">    }    </span>
+    
+    /**
+     * This method will update the release year text field to reflect the
+     * current position of the slider
+     */
+     public void updateReleaseYearText()
+    {
+<span class="nc" id="L136">        releaseYearSliderText.setText(String.format(&quot;%.0f&quot;, </span>
+<span class="nc" id="L137">                releaseYearSlider.getValue()));</span>
+<span class="nc" id="L138">    }</span>
+     
+    /**
+     * This method will allow the button to save the contents of GUI
+     */
+     public void saveForm()
+     {
+          try {
+<span class="nc" id="L146">        Comics newComic = new Comics(this.titleText.getText(), </span>
+<span class="nc" id="L147">                            this.publisherComboBox.getValue(),</span>
+<span class="nc" id="L148">                            this.writerText.getText(), </span>
+<span class="nc" id="L149">                            this.artistText.getText(),</span>
+<span class="nc" id="L150">                            this.collectionSpinner.getValue(),</span>
+<span class="nc" id="L151">                            this.volumeSpinner.getValue(),</span>
+<span class="nc" id="L152">                            this.releaseYearSlider.getValue()</span>
+        );
+<span class="nc" id="L154">        String result = newComic.toString();</span>
+<span class="nc" id="L155">        System.out.printf(&quot;New Comic:%n %s%n&quot;, result);</span>
+<span class="nc" id="L156">        this.systemMsgText.setText(&quot;Success!! Comic saved to file.&quot;);</span>
+<span class="nc" id="L157">        produceTextFile(result);</span>
+<span class="nc" id="L158">        }catch(IllegalArgumentException error)</span>
+        {
+<span class="nc" id="L160">            this.systemMsgText.setText(error.getMessage());</span>
+<span class="nc" id="L161">        }</span>
+<span class="nc" id="L162">     }</span>
+     
+     /**
+      * Write to a file
+      */
+   public void produceTextFile(String result) 
+        {
+<span class="nc" id="L169">          try (Writer outputStream = new FileWriter(&quot;comicCollection.txt&quot;, true))</span>
+          {
+<span class="nc" id="L171">              outputStream.write(result);</span>
+<span class="nc bnc" id="L172" title="All 8 branches missed.">          }</span>
+<span class="nc" id="L173">          catch (IOException fileError) </span>
+          {
+<span class="nc" id="L175">              System.out.println(&quot;Unfortunately, The file cannot be located.&quot;);</span>
+<span class="nc" id="L176">          }</span>
+<span class="nc" id="L177">        }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

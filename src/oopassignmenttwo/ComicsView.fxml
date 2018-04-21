@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="oopassignmenttwo.ComicsViewController">
+    <stylesheets>
+        <URL value="@comicsview.css" />
+    </stylesheets>
+   <children>
+      <VBox alignment="TOP_CENTER" layoutY="4.0" prefHeight="392.0" prefWidth="592.0" spacing="35.0">
+         <children>
+            <Label fx:id="windowHeaderLabel" text="Comic Record">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <GridPane prefHeight="152.0" prefWidth="218.0" vgap="35.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="189.39996337890625" minWidth="10.0" prefWidth="111.39996337890625" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="457.5999877929687" minWidth="10.0" prefWidth="404.2000366210938" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="310.40001220703124" minWidth="10.0" prefWidth="67.20001220703125" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="titleLabel" text="Title" />
+                  <Label fx:id="writerLabel" text="Writer" GridPane.rowIndex="1" />
+                  <Label fx:id="artistLabel" text="Artist" GridPane.rowIndex="2" />
+                  <Label fx:id="publisherLabel" text="Publisher" GridPane.rowIndex="3" />
+                  <Label fx:id="releaseYearLabel" text="Release Year" GridPane.rowIndex="4" />
+                  <TextField fx:id="titleText" GridPane.columnIndex="1" />
+                  <TextField fx:id="writerText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="artistText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <ComboBox fx:id="publisherComboBox" prefWidth="150.0" promptText="Please Select..." GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Slider fx:id="releaseYearSlider" onMouseDragged="#updateReleaseYearText" onMouseReleased="#updateReleaseYearText" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="releaseYearSliderText" onAction="#updateReleaseYearText" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+               </children>
+            </GridPane>
+            <GridPane vgap="35.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.199951171875" minWidth="10.0" prefWidth="78.39996337890625" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="318.4" minWidth="10.0" prefWidth="312.0000366210937" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="collectionLabel" text="Collection" />
+                  <Label fx:id="volumeLabel" text="Volume" GridPane.rowIndex="1" />
+                  <Spinner fx:id="collectionSpinner" GridPane.columnIndex="1" />
+                  <Spinner fx:id="volumeSpinner" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
+            <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveForm" text="Save">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="-20.0" />
+               </VBox.margin>
+            </Button>
+            <Label fx:id="systemMsgText" text="Error/Success Message">
+               <padding>
+                  <Insets bottom="20.0" />
+               </padding>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="15.0" top="5.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>
