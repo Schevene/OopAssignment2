@@ -146,9 +146,9 @@ public class Comics {
      * @param collection 
      */
     public void setCollection(int collection) {
-<span class="pc bpc" id="L149" title="1 of 4 branches missed.">        if (collection &lt; 0 &amp;&amp; collection &gt; 15)</span>
+<span class="pc bpc" id="L149" title="1 of 4 branches missed.">        if (collection &lt; 0 &amp;&amp; collection &lt; 15)</span>
         {
-<span class="nc" id="L151">            throw new IllegalArgumentException(&quot;Please enter a number between&quot;</span>
+<span class="fc" id="L151">            throw new IllegalArgumentException(&quot;Please enter a number between&quot;</span>
                     + &quot;1 and 15.&quot;);
         }
 <span class="fc" id="L154">        else this.collection = collection;</span>

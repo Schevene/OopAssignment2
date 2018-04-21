@@ -146,7 +146,7 @@ public class Comics {
      * @param collection 
      */
     public void setCollection(int collection) {
-        if (collection < 0 && collection > 15)
+        if (collection < 0 && collection < 15)
         {
             throw new IllegalArgumentException("Please enter a number between"
                     + "1 and 15.");

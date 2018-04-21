@@ -218,9 +218,9 @@ public class ComicsTest {
     @Test
     public void testSetCollectionInvalid(){
         try{
-            comic.setCollection(-5);
-            fail("A number not in acceptable range"
-                    + " should have triggered an exception");
+            comic.setCollection(-1);
+            fail("A negative should have triggered an exception because it is"
+                    + "not within the acceptable range");
         }catch(IllegalArgumentException error){
             System.out.printf("Invalid collection: %s%n", error.getMessage());
         }
@@ -315,5 +315,4 @@ public class ComicsTest {
         String result = comic.toString();
         assertEquals(expResult, result);
     }
-    
 }
